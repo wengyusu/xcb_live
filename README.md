@@ -1,6 +1,6 @@
 # xcb_live
 
-> A Vue.js project
+> A Vue.js project, created by wengyusu
 
 ## Build Setup
 
