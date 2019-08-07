@@ -6,6 +6,7 @@
 <router-link :to="{path:'/live',params:{id:item.stream_id},name:'Flv'}">{{item.stream_id}} </router-link>
 <span v-if="item.status">&#160;&#160;&#160;勃了</span>
   <span v-if="!(item.status)">&#160;&#160;&#160;摸了</span> 
+<span>同接: {{item.client}}人</span>
 </li>
 </ul>
 </div>
