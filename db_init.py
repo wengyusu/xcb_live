@@ -13,8 +13,11 @@ CREATE TABLE IF NOT EXISTS info
 title TEXT);
 ''')
 logging.info("create succedded")
-c.execute('''
-INSERT INTO `info` (`stream_id`) VALUES ("live"),("silnb"),("xyynb"),("zealot"),("tsnb"),("bfnb"),("sbsj"),("krnb"),("fish"),("prpr"),("rustle");
-''')
-conn.commit()
+try:
+    c.execute('''
+    INSERT INTO `info` (`stream_id`) VALUES ("live"),("silnb"),("xyynb"),("zealot"),("tsnb"),("bfnb"),("sbsj"),("krnb"),("fish"),("prpr"),("rustle");
+    ''')
+    conn.commit()
+except Exception as e:
+    logging.error(str(e))
 conn.close()
