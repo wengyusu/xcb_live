@@ -10,7 +10,16 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/': {
+        target: 'https://xcb.uestc.edu.cn/',
+        changeOrigin: true
+      }
+      // '/flv/stats': {
+      //   target: 'https://xcb.uestc.edu.cn/flv/stats',
+      //   changeOrigin: true
+      // }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
