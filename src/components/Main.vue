@@ -31,10 +31,11 @@ export default {
           for(let s in stream){
             // console.log(s)
             for(let i in this.items){
+              let data = this.items[i]
+              data['client'] = 0
               if(stream[s]['name'] == this.items[i]['stream_id']){
                 console.log(stream[s]['bytes_in'] )
-                let data = this.items[i]
-                data['client'] = 0
+                data['client'] = stream[s]['nclients']
                 data['status'] = false
                 if(stream[s]['bytes_in'] != 0 || stream[s]['bytes_out'] != 0)
                   data['status'] = true
