@@ -26,22 +26,26 @@ export default {
           // console.log(response['data'])
           const stat = parser.parse(response['data'])
           console.log(stat)
-          const stream = stat['http-flv']['server']['application'][1]['live']['stream']
+          let stream = stat['http-flv']['server']['application'][1]['live']['stream']
           console.log(stream)
-          for(let s in stream){
-            // console.log(s)
-            for(let i in this.items){
-              let data = this.items[i]
-              data['client'] = 0
-              if(stream[s]['name'] == this.items[i]['stream_id']){
-                console.log(stream[s]['bytes_in'] )
-                data['client'] = stream[s]['nclients']
+          if(!Array.isArray(stream)){
+            stream = [stream]
+          }
+          for(let i of this.items){
+            let data = i
+            data['client'] = 0
+            for(let s of stream){
+              if(s['name'] == i['stream_id']){
+                // console.log(stream[s]['bytes_in'] )
+                data['client'] = s['nclients']
+                console.log(data['client'])
                 data['status'] = false
-                if(stream[s]['bytes_in'] != 0 || stream[s]['bytes_out'] != 0)
+                if(s['bytes_in'] != 0 || s['bytes_out'] != 0){
                   data['status'] = true
-                  this.$set(this.items,i,data)
+                }
               }
             }
+            this.$set(this.items,this.items.indexOf(i),data)
           }
         })
         // console.log(items)
